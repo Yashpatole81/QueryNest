@@ -53,6 +53,10 @@ export const AppProvider = ({ children }) => {
     setResults(historyItem.results);
   }, []);
 
+  const deleteFromHistory = useCallback((id) => {
+    setHistory((prev) => prev.filter((item) => item.id !== id));
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -68,6 +72,7 @@ export const AppProvider = ({ children }) => {
         clearResults,
         addToHistory,
         loadFromHistory,
+        deleteFromHistory,
         theme,
         toggleTheme,
         isMobileSidebarOpen,
