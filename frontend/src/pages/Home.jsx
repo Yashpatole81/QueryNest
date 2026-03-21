@@ -47,7 +47,7 @@ const Home = () => {
       <div className="flex-1 flex flex-col h-full overflow-hidden relative bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-100 via-slate-50 to-slate-50 dark:bg-none dark:bg-black">
         <Topbar />
 
-        <main className="flex-1 overflow-y-auto p-6 md:p-8 w-full scroll-smooth">
+        <main className="flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] p-6 md:p-8 w-full scroll-smooth">
           <div className="max-w-6xl mx-auto w-full pb-20 pt-4">
             <div className="mb-12 text-center max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700">
               <h2

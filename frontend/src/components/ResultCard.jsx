@@ -35,7 +35,7 @@ const ResultCard = ({ result }) => {
       </div>
       
       <div className="flex-1 mb-6">
-        <div className="text-slate-800 dark:text-zinc-300 leading-relaxed whitespace-pre-wrap">
+        <div className="text-slate-800 dark:text-zinc-300 leading-relaxed whitespace-pre-wrap break-words">
           {answer}
         </div>
       </div>

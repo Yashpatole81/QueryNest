@@ -36,7 +36,7 @@ const ExplainPanel = ({ chunks }) => {
             </div>
           </div>
           
-          <p className="text-slate-600 dark:text-slate-400 leading-relaxed italic border-l-2 border-slate-300 dark:border-slate-600 pl-3 line-clamp-4 hover:line-clamp-none transition-all">
+          <p className="text-slate-600 dark:text-slate-400 leading-relaxed italic border-l-2 border-slate-300 dark:border-slate-600 pl-3 line-clamp-4 hover:line-clamp-none transition-all break-words overflow-wrap-anywhere">
             "{chunk.text || chunk.page_content}"
           </p>
         </div>
