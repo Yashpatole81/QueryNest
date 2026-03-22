@@ -6,9 +6,10 @@ export const AppProvider = ({ children }) => {
   const [history, setHistory] = useState([]);
   const [currentQuery, setCurrentQuery] = useState('');
   const [selectedPipelines, setSelectedPipelines] = useState(['fast']);
-  const [results, setResults] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [isQuerying, setIsQuerying] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [currentSessionId, setCurrentSessionId] = useState(null);
   
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'dark';
@@ -39,22 +40,30 @@ export const AppProvider = ({ children }) => {
     );
   }, []);
   
-  const clearResults = useCallback(() => {
-    setResults([]);
+  const clearMessages = useCallback(() => {
+    setMessages([]);
   }, []);
 
   const addToHistory = useCallback((queryData) => {
     setHistory((prev) => [queryData, ...prev]);
   }, []);
 
+  const updateHistory = useCallback((id, updatedData) => {
+    setHistory((prev) => prev.map((item) => item.id === id ? { ...item, ...updatedData } : item));
+  }, []);
+
   const loadFromHistory = useCallback((historyItem) => {
-    setCurrentQuery(historyItem.query);
-    setSelectedPipelines(historyItem.pipelines);
-    setResults(historyItem.results);
+    setCurrentQuery('');
+    if (historyItem.messages?.length > 0) {
+      setSelectedPipelines(historyItem.messages[historyItem.messages.length - 1].pipelines);
+    }
+    setMessages(historyItem.messages || []);
+    setCurrentSessionId(historyItem.id);
   }, []);
 
   const deleteFromHistory = useCallback((id) => {
     setHistory((prev) => prev.filter((item) => item.id !== id));
+    setCurrentSessionId((prev) => prev === id ? null : prev);
   }, []);
 
   return (
@@ -65,19 +74,22 @@ export const AppProvider = ({ children }) => {
         setCurrentQuery,
         selectedPipelines,
         togglePipeline,
-        results,
-        setResults,
+        messages,
+        setMessages,
         isQuerying,
         setIsQuerying,
-        clearResults,
+        clearMessages,
         addToHistory,
+        updateHistory,
         loadFromHistory,
         deleteFromHistory,
         theme,
         toggleTheme,
         isMobileSidebarOpen,
         setIsMobileSidebarOpen,
-        toggleMobileSidebar
+        toggleMobileSidebar,
+        currentSessionId,
+        setCurrentSessionId
       }}
     >
       {children}
