@@ -36,7 +36,7 @@ const SidebarItem = ({ item, isCollapsed, isActive }) => {
     >
       <button
         onClick={handleLoad}
-        title={isCollapsed ? item.query : undefined}
+        title={isCollapsed ? (item.title || item.query) : undefined}
         className={clsx(
           "flex items-center gap-3 w-full p-2.5 rounded-xl transition-colors duration-200 text-neutral-700 dark:text-neutral-200",
           isActive 
@@ -53,7 +53,7 @@ const SidebarItem = ({ item, isCollapsed, isActive }) => {
         </div>
         {!isCollapsed && (
           <span className="truncate text-sm opacity-100 animate-in fade-in duration-300 flex-1 text-left w-full h-5 leading-5 items-center">
-            {item.query}
+            {item.title || item.query}
           </span>
         )}
       </button>

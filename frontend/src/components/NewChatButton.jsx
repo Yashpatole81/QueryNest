@@ -4,11 +4,12 @@ import clsx from 'clsx';
 import { useAppContext } from '../context/AppContext';
 
 const NewChatButton = ({ isCollapsed }) => {
-  const { clearResults, setCurrentQuery, isMobileSidebarOpen, setIsMobileSidebarOpen } = useAppContext();
+  const { clearMessages, setCurrentQuery, isMobileSidebarOpen, setIsMobileSidebarOpen, setCurrentSessionId } = useAppContext();
 
   const handleNewChat = () => {
-    clearResults();
+    clearMessages();
     setCurrentQuery('');
+    setCurrentSessionId(null);
     if (isMobileSidebarOpen) {
       setIsMobileSidebarOpen(false);
     }

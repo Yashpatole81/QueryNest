@@ -3,10 +3,10 @@ import SidebarItem from './SidebarItem';
 import { useAppContext } from '../context/AppContext';
 
 const HistoryList = ({ isCollapsed, searchQuery }) => {
-  const { history, currentQuery } = useAppContext();
+  const { history, currentSessionId } = useAppContext();
 
   const filteredHistory = history.filter(item => 
-    item.query.toLowerCase().includes(searchQuery.toLowerCase())
+    (item.title || item.query).toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -21,7 +21,7 @@ const HistoryList = ({ isCollapsed, searchQuery }) => {
             key={item.id} 
             item={item} 
             isCollapsed={isCollapsed} 
-            isActive={currentQuery === item.query}
+            isActive={currentSessionId === item.id}
           />
         ))
       )}
