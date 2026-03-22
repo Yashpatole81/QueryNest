@@ -51,19 +51,3 @@ Machine Learning
 
 Lightweight embedding models
 Vector search (FAISS / Chroma / similar)
-
-DevOps
-
-Docker
-CPU-based deployment
-💡 Why QueryNest?
-💻 Runs on CPU — no GPU required
-⚡ Low latency responses
-💸 Cost-efficient deployment
-📈 Scalable architecture
-🧪 Hackathon-ready innovation
-🧩 Use Cases
-👨‍💻 Developer debugging assistant
-📄 Document search & summarization
-🏢 Enterprise knowledge assistant
-🔎 Internal company search engine
