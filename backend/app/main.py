@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import health, ingest, query, debug
+from app.utils.helpers import ensure_directories
 
 app = FastAPI(
     title="QueryNest",
@@ -15,6 +16,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.on_event("startup")
+async def startup_event():
+    ensure_directories()
 
 app.include_router(health.router, tags=["Health"])
 app.include_router(ingest.router, tags=["Ingest"])

@@ -8,7 +8,7 @@ router = APIRouter()
 @router.post("/query", response_model=QueryResponse)
 async def query_documents(request: QueryRequest):
     try:
-        answer, sources = rag_pipeline.query(request.query)
+        answer, sources = rag_pipeline.query(request.query, request.pipeline)
         return QueryResponse(answer=answer, sources=sources)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

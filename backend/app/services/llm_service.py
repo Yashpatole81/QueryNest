@@ -24,14 +24,15 @@ Question:
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
             ],
-            "temperature": 0.7
+            "temperature": 0.7,
+            "max_tokens": 200
         }
         
         headers = {"Content-Type": "application/json"}
         
         try:
             logger.info(f"Calling LLM API: {self.api_url}")
-            response = requests.post(self.api_url, json=payload, headers=headers, timeout=30)
+            response = requests.post(self.api_url, json=payload, headers=headers, timeout=60)
             response.raise_for_status()
             
             result = response.json()
