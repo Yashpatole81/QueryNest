@@ -1,0 +1,29 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic>=1.10.0,<2.0.0
+requests
+
+# ML / Embeddings (CPU optimized)
+sentence-transformers
+
+# Install CPU-only PyTorch (IMPORTANT)
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+
+# Vector DB
+faiss-cpu
+
+# Data handling
+numpy
+pandas
+
+# Env config
+python-dotenv
+
+# File parsing
+pypdf
+python-docx
+
+# Utilities
+tqdm
