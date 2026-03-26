@@ -34,6 +34,7 @@ const ResultCard = ({ result, isSingle }) => {
 
   const answer = data?.answer || "No answer provided";
   const chunks = data?.chunks || data?.retrieved_chunks || [];
+  const hasMeaningfulChunks = chunks && chunks.length > 0;
 
   return (
     <div className={clsx(
@@ -55,22 +56,24 @@ const ResultCard = ({ result, isSingle }) => {
         </div>
       </div>
       
-      <div className={clsx("mt-auto pt-4", !isSingle && "border-t border-slate-100 dark:border-zinc-800")}>
-        <button
-          onClick={() => setShowExplain(!showExplain)}
-          className={clsx(
-            "w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium transition-colors border",
-            showExplain 
-              ? "bg-slate-900 dark:bg-zinc-200 text-white dark:text-black border-slate-900 dark:border-zinc-200 hover:bg-slate-800 dark:hover:bg-zinc-300" 
-              : "bg-white dark:bg-[#1a1a1a] text-slate-700 dark:text-zinc-400 border-slate-200 dark:border-zinc-800 hover:bg-slate-50 dark:hover:bg-[#222] shadow-sm"
-          )}
-        >
-          Why this answer?
-          {showExplain ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-        </button>
-        
-        {showExplain && <ExplainPanel chunks={chunks} />}
-      </div>
+      {hasMeaningfulChunks && (
+        <div className={clsx("mt-auto pt-4", !isSingle && "border-t border-slate-100 dark:border-zinc-800")}>
+          <button
+            onClick={() => setShowExplain(!showExplain)}
+            className={clsx(
+              "w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium transition-colors border",
+              showExplain 
+                ? "bg-slate-900 dark:bg-zinc-200 text-white dark:text-black border-slate-900 dark:border-zinc-200 hover:bg-slate-800 dark:hover:bg-zinc-300" 
+                : "bg-white dark:bg-[#1a1a1a] text-slate-700 dark:text-zinc-400 border-slate-200 dark:border-zinc-800 hover:bg-slate-50 dark:hover:bg-[#222] shadow-sm"
+            )}
+          >
+            Why this answer?
+            {showExplain ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          </button>
+          
+          {showExplain && <ExplainPanel chunks={chunks} />}
+        </div>
+      )}
     </div>
   );
 };
